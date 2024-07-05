@@ -1,0 +1,50 @@
+.nav-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #405D72;
+    padding: 1rem ;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.logo{
+    color: #FFF8F3;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.menu{
+    display: flex;
+    gap: 1rem;
+    position: relative;
+}
+
+.menu > * {
+    color: #FFF8F3;
+    text-decoration: none;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+.search input{
+    padding: .5rem;
+    outline: none;
+    border-radius: .2rem;
+    border: none;
+}
+
+
+.cart {
+    position: absolute;
+    right: -25px;
+    top: -10px;
+    font-size: .8rem;
+    background: white;
+    color: black;
+    font-weight: 600;
+    padding: .6rem;
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    display: grid;
+    place-content: center;
+}
