@@ -1,25 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Layout from "../layout/Layout";
 import Product from "../components/Product";
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchData } from "../app/features/productSlice";
 
 function Home() {
-	const [products, setProducts] = useState([]);
+	const { products, searchItems } = useSelector((state) => state.products);
+	const dispatch = useDispatch();
 
 	//api call
 	useEffect(() => {
-		fetch("https://fakestoreapi.com/products")
-			.then((data) => data.json())
-			.then((result) => setProducts(result));
+		dispatch(fetchData());
 	}, []);
-
-
-
 
 	return (
 		<Layout>
 			<div className="productlist-container">
-				{products.map((product) => (
+				{searchItems.map((product) => (
 					<Product key={product.id} product={product} />
 				))}
 			</div>

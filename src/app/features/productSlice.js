@@ -7,7 +7,7 @@ const initialState = {
 	error: null,
 };
 
-export const fetchData = createAsyncThunk("pfetchData", async () => {
+export const fetchData = createAsyncThunk("fetchData", async () => {
 	try {
 		const res = await fetch("https://fakestoreapi.com/products");
 		const data = await res.json();
@@ -22,9 +22,13 @@ const productSlice = createSlice({
 	initialState,
 	reducers: {
 		filterSearch(state, action) {
-			state.searchItems = state.products.filter((item) =>
-				item.title.includes(action.payload)
-			);
+			if (action.payload) {
+				state.searchItems = state.products.filter((item) =>
+					item.title.toLowerCase().includes(action.payload.toLowerCase())
+				);
+			} else{
+				state.searchItems = state.products
+			}
 		},
 	},
 	extraReducers: (builder) => {

@@ -2,20 +2,18 @@ import React, { useEffect, useState } from "react";
 import Layout from "../layout/Layout";
 import Product from "../components/Product";
 import Select from "react-select";
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchData } from "../app/features/productSlice";
 
 
 function ProductList() {
-	const [products, setProducts] = useState([]);
 	const [categorySelect, setCategorySelect] = useState("");
+	const {products} = useSelector((state) => state.products);
+	const dispatch = useDispatch()
+
 	//api call
 	useEffect(() => {
-		fetch("https://fakestoreapi.com/products")
-			.then((res) => res.json())
-			.then((data) => setProducts(data));
-
-		
+		dispatch(fetchData())
 	}, []);
 
 	//extract categories from data

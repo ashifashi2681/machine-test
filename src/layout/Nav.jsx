@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/nav.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { filterSearch } from "../app/features/productSlice";
 
 function Nav() {
-	const [value, setValue] = useState('')
-    const cart = useSelector((state)=> state.cart)
+	const [value, setValue] = useState("");
+	const dispatch = useDispatch();
+	const cart = useSelector((state) => state.cart);
+	const {products} = useSelector((state) => state.products)
 
 	const handleChange = (e) => {
-		setValue(e.target.value)
-		
-	}
-	
+		setValue(e.target.value);
+	};
+
+	useEffect(() => {
+		dispatch(filterSearch(value));
+	}, [value, products]);
 
 	return (
 		<div className="nav-container">
@@ -23,7 +28,12 @@ function Nav() {
 				<p className="cart">{cart.length}</p>
 			</div>
 			<div className="search">
-				<input type="text" placeholder="search..." value={value} onChange={handleChange}/>
+				<input
+					type="text"
+					placeholder="search..."
+					value={value}
+					onChange={handleChange}
+				/>
 			</div>
 		</div>
 	);
