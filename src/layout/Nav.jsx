@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/nav.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function Nav() {
 	const [value, setValue] = useState('')
     const cart = useSelector((state)=> state.cart)
-	const dispatch = useDispatch()
 
 	const handleChange = (e) => {
 		setValue(e.target.value)
